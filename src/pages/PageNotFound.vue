@@ -12,6 +12,7 @@
 export default {
   name: 'fof',
   components: {},
+
   data() {
     return {
       url: this.$route.path,

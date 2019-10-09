@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="ui segment">
     <h1>WTC - Register</h1>
     <sui-divider section />
+    <Ribbon v-bind:message="errorMessage" />
     <sui-form class="mt-2">
       <Input
         text="First Name" type="text" v-model="firstName"
@@ -35,26 +36,32 @@
 </template>
 
 <script>
+import SimpleVueValidator from 'simple-vue-validator';
+import ApiClient from '@/api/client';
+import Validations from '@/models/Validations/FormValidations';
+import TokenService from '@/api/TokenService';
+
+import Checkbox from '@/components/Form/Checkbox.vue';
 import Input from '@/components/Form/Input.vue';
 import Submit from '@/components/Form/Submit.vue';
-import Checkbox from '@/components/Form/Checkbox.vue';
 import Link from '@/components/Link/Link.vue';
-import SimpleVueValidator from 'simple-vue-validator';
-import Validations from '@/models/Validations/FormValidations';
+import Ribbon from '@/components/Link/Ribbon.vue';
 
 export default {
   name: 'register',
   components: {
-    Input, Submit,
-    Link, Checkbox,
+    Input, Submit, Link,
+    Checkbox, Ribbon
   },
+
   data() {
     return {
-      agree: false,
+      errorMessage: '', agree: false,
       firstName: '', lastName: '',
       email: '', password: '',
     };
   },
+
   validators: {
     firstName: function() { return Validations.firstName(SimpleVueValidator, this.firstName) },
     lastName: function() { return Validations.lastName(SimpleVueValidator, this.lastName) },
@@ -62,9 +69,43 @@ export default {
     password: function() { return Validations.password(SimpleVueValidator, this.password) },
     agree: function() { return Validations.agree(SimpleVueValidator, this.agree) },
   },
+
   methods: {
+    login(data) {
+      ApiClient.post('/login', data).then(res => {
+        if (res.error) {
+          this.errorMessage = res.message;
+          return;
+        }
+
+        const { token } = res.data.data;
+        TokenService.handleLogin(token);
+      });
+    },
+
+    register() {
+      const that = this;
+      const data = {
+        email: this.email, password: this.password, 
+        firstName: this.firstName, lastName: this.lastName
+      };
+
+      ApiClient.post('/register', data).then(res => {
+        if (res.error) {
+          this.errorMessage = `Warning, ${res.message}`;
+          return;
+        }
+
+        that.login({ email: data.email, password: data.password });
+      });
+    },
+
     submit() {
-      this.$validate().then(valid => valid);
+      this.$validate().then(valid => {
+        if (valid) {
+          this.register();
+        }
+      });
     },
   }
 }

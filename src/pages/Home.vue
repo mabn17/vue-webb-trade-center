@@ -27,9 +27,10 @@ export default {
   components: {
     OrButtons,
   },
+
   methods: {
-    about() { window.location.assign('/about'); },
-    register() { window.location.assign('/register'); },
+    about() { this.$router.push('/about') },
+    register() { this.$router.push('/register'); },
   }
 };
 </script>
