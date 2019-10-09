@@ -22,6 +22,7 @@
 
 <script>
 import OrButtons from '@/components/Bottons/OrButtons.vue';
+
 export default {
   name: 'home',
   components: {
@@ -31,7 +32,7 @@ export default {
   methods: {
     about() { this.$router.push('/about') },
     register() { this.$router.push('/register'); },
-  }
+  },
 };
 </script>
 

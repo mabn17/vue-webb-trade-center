@@ -7,9 +7,12 @@ import PageNotFound from './pages/PageNotFound.vue';
 import SuiVue from 'semantic-ui-vue';
 import 'semantic-ui-css/semantic.min.css';
 
+import Accsess from './utils/access';
+
 Vue.use(Router);
 Vue.use(SuiVue);
 Vue.use(SimpleVueValidator);
+
 
 export default new Router({
   mode: 'history',
@@ -37,6 +40,13 @@ export default new Router({
       name: 'register',
       component: () =>
         import(/* webpackChunkName: "register" */ './pages/Register.vue'),
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: () =>
+        import(/* webpackChunkName: "account" */ './pages/Account.vue'),
+      beforeEnter: (_to, _from, next) => Accsess.hasPremissions(next),
     },
     {
       path: '*',

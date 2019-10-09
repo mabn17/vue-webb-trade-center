@@ -25,6 +25,10 @@ ApiClient.interceptors.request.use(
   error => Promise.reject(error),
 );
 
+/**
+ * Bad solution, do not judge :)
+ * Don't want to change the api response for the React version.
+*/
 ApiClient.interceptors.response.use(undefined, error => {
   const err = handleError(error);
   const jwtErrors = ['signature', 'jwt', 'token'];

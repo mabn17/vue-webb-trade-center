@@ -25,6 +25,7 @@ import SimpleVueValidator from 'simple-vue-validator';
 import ApiClient from '@/api/client';
 import Validations from '@/models/Validations/FormValidations';
 import TokenService from '@/api/TokenService';
+import ErrorHandeler from '@/utils/errors';
 
 import Input from '@/components/Form/Input.vue';
 import Submit from '@/components/Form/Submit.vue';
@@ -66,7 +67,7 @@ export default {
 
     submit() {
       this.$validate().then(valid => {
-        if(valid) {
+        if (valid) {
           this.login();
         }
       });
@@ -74,10 +75,8 @@ export default {
   },
 
   mounted() {
-    const query = this.$router.history.current.query.err;
-    if (query) {
-      this.errorMessage = 'Warning, Token has expired';
-    }
+    const query = this.$router.history.current.query;
+    this.errorMessage = ErrorHandeler.checkLoginQuery(query);
   },
 }
 </script>
