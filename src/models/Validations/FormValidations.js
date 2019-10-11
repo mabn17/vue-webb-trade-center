@@ -9,6 +9,8 @@ const Validations = {
     SimpleVueValidator.Validator.value(value).required(),
   agree: (SimpleVueValidator, value) =>
     SimpleVueValidator.Validator.value(value).in([ true ]),
+  balance: (SimpleVueValidator, value) =>
+    SimpleVueValidator.Validator.value(value).float().greaterThan(0)
 };
 
 export default Validations;

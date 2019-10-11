@@ -3,8 +3,8 @@
     <div :class="{errorClass}" >
       <label>{{ text }}</label>
       <div class="content">
-        <input v-bind:placeholder="text"
-          v-bind:type="type"
+        <input :placeholder="text"
+          :type="type"
           @input="$emit('input', $event.target.value)"
         >
       </div>
@@ -21,7 +21,7 @@ export default {
     text: String,
     name: String,
     type: String,
-    value: String,
+    value: [String, Number],
     errorValue: String,
     errorClass: Object,
     styles: {

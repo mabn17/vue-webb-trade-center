@@ -36,53 +36,28 @@
 </template>
 
 <script>
-import SimpleVueValidator from 'simple-vue-validator';
-import ApiClient from '@/api/client';
-import Validations from '@/models/Validations/FormValidations';
-import TokenService from '@/api/TokenService';
-
+import DefaultForm from '@/views/Membership/Forms.js';
+import { RegisterState } from '@/views/Membership/states.js';
 import Checkbox from '@/components/Form/Checkbox.vue';
-import Input from '@/components/Form/Input.vue';
-import Submit from '@/components/Form/Submit.vue';
-import Link from '@/components/Link/Link.vue';
-import Ribbon from '@/components/Link/Ribbon.vue';
 
 export default {
   name: 'register',
+  extends: DefaultForm,
   components: {
-    Input, Submit, Link,
-    Checkbox, Ribbon
+    Checkbox,
   },
 
-  data() {
-    return {
-      errorMessage: '', agree: false,
-      firstName: '', lastName: '',
-      email: '', password: '',
-    };
-  },
+  data() { return RegisterState; },
 
   validators: {
-    firstName: function() { return Validations.firstName(SimpleVueValidator, this.firstName) },
-    lastName: function() { return Validations.lastName(SimpleVueValidator, this.lastName) },
-    email: function() { return Validations.email(SimpleVueValidator, this.email) },
-    password: function() { return Validations.password(SimpleVueValidator, this.password) },
-    agree: function() { return Validations.agree(SimpleVueValidator, this.agree) },
+    firstName: function() { return this.Validation().firstName(this.VueValidator(), this.firstName) },
+    lastName: function() { return this.Validation().lastName(this.VueValidator(), this.lastName) },
+    agree: function() { return this.Validation().agree(this.VueValidator(), this.agree) },
+    email: function() { return this.Validation().email(this.VueValidator(), this.email) },
+    password: function() { return this.Validation().password(this.VueValidator(), this.password) },
   },
 
   methods: {
-    login(data) {
-      ApiClient.post('/login', data).then(res => {
-        if (res.error) {
-          this.errorMessage = res.message;
-          return;
-        }
-
-        const { token } = res.data.data;
-        TokenService.handleLogin(token);
-      });
-    },
-
     register() {
       const that = this;
       const data = {
@@ -90,7 +65,7 @@ export default {
         firstName: this.firstName, lastName: this.lastName
       };
 
-      ApiClient.post('/register', data).then(res => {
+      this.Api().post('/register', data).then(res => {
         if (res.error) {
           this.errorMessage = `Warning, ${res.message}`;
           return;
@@ -110,4 +85,4 @@ export default {
   }
 }
 </script>
-<style lang="less" src="../assets/style/less/margin.less"></style>
+<style lang="less" src="@/assets/style/less/margin.less"></style>

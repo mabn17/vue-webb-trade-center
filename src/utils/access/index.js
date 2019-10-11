@@ -5,10 +5,7 @@ const Accsess = {
     const token = TokenService.getUserToken();
 
     if (!token) {
-       next({
-        path: '/login',
-        query: { token: false }
-      });
+       next('/login?token=false');
     }
 
     return next();

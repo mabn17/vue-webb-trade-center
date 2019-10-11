@@ -21,22 +21,15 @@
 </template>
 
 <script>
-import OrButtons from '@/components/Bottons/OrButtons.vue';
+import DefaultHome from './Home.js';
 
 export default {
   name: 'home',
-  components: {
-    OrButtons,
-  },
-
-  methods: {
-    about() { this.$router.push('/about') },
-    register() { this.$router.push('/register'); },
-  },
+  extends: DefaultHome,
 };
 </script>
 
 
-<style lang="less" src="../assets/style/less/typography.less"></style>
-<style lang="less" src="../assets/style/less/center.less"></style>
-<style lang="less" src="../assets/style/less/margin.less"></style>
+<style lang="less" src="@/assets/style/less/typography.less"></style>
+<style lang="less" src="@/assets/style/less/center.less"></style>
+<style lang="less" src="@/assets/style/less/margin.less"></style>

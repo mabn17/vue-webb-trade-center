@@ -1,16 +1,17 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import SimpleVueValidator from 'simple-vue-validator';
-import Home from './pages/Home.vue';
-import PageNotFound from './pages/PageNotFound.vue';
+import TrendChart from 'vue-trend-chart';
+import Accsess from './utils/access';
 
 import SuiVue from 'semantic-ui-vue';
 import 'semantic-ui-css/semantic.min.css';
 
-import Accsess from './utils/access';
+import Home from './views/Index/Home.vue';
 
 Vue.use(Router);
 Vue.use(SuiVue);
+Vue.use(TrendChart);
 Vue.use(SimpleVueValidator);
 
 
@@ -27,31 +28,32 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () =>
-        import(/* webpackChunkName: "about" */ './pages/About.vue'),
+        import(/* webpackChunkName: "about" */ './views/About/About.vue'),
     },
     {
       path: '/login',
       name: 'login',
       component: () =>
-        import(/* webpackChunkName: "login" */ './pages/Login.vue'),
+        import(/* webpackChunkName: "login" */ './views/Membership/Login/Login.vue'),
     },
     {
       path: '/register',
       name: 'register',
       component: () =>
-        import(/* webpackChunkName: "register" */ './pages/Register.vue'),
+        import(/* webpackChunkName: "register" */ './views/Membership/Register/Register.vue'),
     },
     {
       path: '/account',
       name: 'account',
       component: () =>
-        import(/* webpackChunkName: "account" */ './pages/Account.vue'),
+        import(/* webpackChunkName: "account" */ './views/Account/Account.vue'),
       beforeEnter: (_to, _from, next) => Accsess.hasPremissions(next),
     },
     {
       path: '*',
       name: 'fof',
-      component: PageNotFound,
+      component: () =>
+        import(/* webpackChunkName: "fof" */ './views/Error/PageNotFound.vue'),
     }
   ],
 });

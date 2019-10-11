@@ -59,5 +59,5 @@ export default {
 };
 </script>
 
-<style lang="less" src="../assets/style/less/typography.less"></style>
-<style lang="less" src="../assets/style/less/margin.less"></style>
+<style lang="less" src="@/assets/style/less/typography.less"></style>
+<style lang="less" src="@/assets/style/less/margin.less"></style>

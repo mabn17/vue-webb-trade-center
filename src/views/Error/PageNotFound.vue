@@ -9,16 +9,12 @@
 </template>
 
 <script>
-export default {
-  name: 'fof',
-  components: {},
+import FoF from './FoF.js';
 
-  data() {
-    return {
-      url: this.$route.path,
-    }
-  }
+export default {
+  extends: FoF,
+  name: 'fof',
 };
 </script>
 
-<style lang="less" src="../assets/style/less/center.less"></style>
+<style lang="less" src="@/assets/style/less/center.less"></style>
