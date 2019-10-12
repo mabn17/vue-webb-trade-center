@@ -30,6 +30,3 @@
   </sui-segment>  
 </template>
 
-<script />
-<style lang="less">
-</style>

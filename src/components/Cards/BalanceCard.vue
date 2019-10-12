@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { sumArr, round } from '@/utils/math';
+import { sumArr, round } from '@/utils/math'
 
 export default {
   name: 'BalanceCard',

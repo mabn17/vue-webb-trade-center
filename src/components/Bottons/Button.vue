@@ -22,15 +22,15 @@ export default {
       default: () => null,
     },
   }
-};
+}
 </script>
 
 <style lang="css">
-  .lower-i {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    position: relative !important;
-    top: -1px !important;
-    background: #00b5ad;
-  }
+.lower-i {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  position: relative !important;
+  top: -1px !important;
+  background: #00b5ad;
+}
 </style>

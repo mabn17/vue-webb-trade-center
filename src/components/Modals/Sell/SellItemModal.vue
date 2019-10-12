@@ -1,10 +1,16 @@
 <template>
   <sui-modal v-model="show" :closable="false">
-    <sui-modal-header>Deposit</sui-modal-header>
+    <sui-modal-header>Sell</sui-modal-header>
     <sui-modal-content>
       <sui-modal-description>
-        <sui-header>How much balance would you like to add?</sui-header>
-        Hej
+        <sui-header>
+          You can sell up to {{ `${activeItem.amount} ${activeItem.item_name}` }} stocks.
+        </sui-header>
+        <span class="text-danger">{{ errorMessage }}</span>
+        <br />
+        <input 
+          type="number" :defaultValue="0" v-model="itemsToSell"
+        />
       </sui-modal-description>
     </sui-modal-content>
     <sui-modal-actions>
@@ -19,43 +25,34 @@
 </template>
 
 <script>
+import DefaultSell from '@/components/Modals/Sell/SellItem'
 export default {
   name: 'SellModal',
+  extends: DefaultSell,
 
   props: {
     callback: Function,
     update: Function,
     show: Boolean,
-  },
-
-  data() {
-    return {
-      itemsToSell: 0,
-    }
+    activeItem: {
+      type: Object,
+      default: () => {
+        return { amount: 0, item_name: '', };
+      },
+    },
   },
 
   methods: {
     close() { this.callback(); },
 
-    // addPersonalAssets() {
-    //   const that = this;
-    //   this.Api().post('/user/update/assets', {newAmount: this.balance})
-    //   .then(res => {
-    //     if (res.error) {
-    //       return;
-    //     }
-
-    //     that.update(true);
-    //   });
-    // },
-
     submit() {
-      this.$validate().then(valid => {
-        if (valid) {
-          // this.addPersonalAssets();
-          return true;
-        }
-      });
+      this.errorMessage = ''
+      if (!this.validate()) {
+        this.errorMessage = 'Wrong input'
+        return
+      }
+
+      this.execSellPersonalStocks()
     },
   },
 }

@@ -1,46 +1,79 @@
 <template>
   <div class="small">
-    <line-chart
+    <line-chart v-if="stock.length"
       :width="600" :height="200"
-      :responsive="false" :chart-data="datacollection">
+      :responsive="false" v-bind:chart-data="datacollection">
     </line-chart>
   </div>
 </template>
 
 <script>
-  import LineChart from './LineChart.js';
+import LineChart from './LineChart.js';
+import { filterByObjProp } from '@/utils/filter';
+import { calcDiff, round } from '@/utils/math';
 
-  export default {
-    components: {
-      LineChart
-    },
-    data () {
-      return {
-        datacollection: null
+export default {
+  components: { LineChart },
+
+  props: {
+    stock: {
+      type: [Array],
+      default: () => [],
+    }
+  },
+
+  data () {
+    return {
+      datacollection: null,
+      colors: {
+        down: '#f87979',
+        up: '#33ab55',
+      },
+      activeColor: '',
+    }
+  },
+
+  mounted () { this.fillData() },
+
+  watch: { stock: function() { this.fillData() } },
+
+  methods: {
+    getPrice() { return this.stock[0] ? this.stock[0].price : null },
+    getName() { return this.stock[0] ? this.stock[0].item_name : null },
+
+    getTitleString() {
+      const name = this.getName();
+
+      if (!name) {
+        return name;
       }
+
+      const diff = round(calcDiff(
+        this.stock[0].price,
+        this.stock[0].old_price
+      ));
+
+
+      this.activeColor = diff >= 0 ? this.colors.up : this.colors.down;
+      return `${name}: ${diff}%`;
     },
-  
-    mounted () {
-      this.fillData()
-    },
-  
-    methods: {
-      fillData () {
-        this.datacollection = {
-          labels: [1, 2, 5, 3],
-          datasets: [
-            {
-              label: 'Price Changes',
-              backgroundColor: '#f87979',
-              data: [1, 2, 5, 3]
-            }
-          ]
-        }
+
+    fillData() {
+      this.datacollection = {
+        labels: [...filterByObjProp(this.stock), 'now'],
+        datasets: [
+          {
+            label: this.getTitleString(),
+            backgroundColor: this.activeColor,
+            data: [...filterByObjProp(this.stock, 'old_price'), this.getPrice()]
+          }
+        ]
       }
     }
-  }
+  },
+}
 </script>
 
 <style>
-  .small { margin: 150px auto; }
+.small { margin: 150px auto; }
 </style>

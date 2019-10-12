@@ -13,4 +13,4 @@ const Validations = {
     SimpleVueValidator.Validator.value(value).float().greaterThan(0)
 };
 
-export default Validations;
+export default Validations

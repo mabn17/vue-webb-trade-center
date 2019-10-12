@@ -17,5 +17,5 @@ export default {
       default: 'right mt-1 signer'
     }
   }
-};
+}
 </script>

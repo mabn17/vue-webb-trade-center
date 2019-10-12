@@ -1,18 +1,16 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import SimpleVueValidator from 'simple-vue-validator';
-import TrendChart from 'vue-trend-chart';
-import Accsess from './utils/access';
+import Vue from 'vue'
+import Router from 'vue-router'
+import SimpleVueValidator from 'simple-vue-validator'
+import Accsess from './utils/access'
 
-import SuiVue from 'semantic-ui-vue';
-import 'semantic-ui-css/semantic.min.css';
+import SuiVue from 'semantic-ui-vue'
+import 'semantic-ui-css/semantic.min.css'
 
-import Home from './views/Index/Home.vue';
+import Home from './views/Index/Home.vue'
 
-Vue.use(Router);
-Vue.use(SuiVue);
-Vue.use(TrendChart);
-Vue.use(SimpleVueValidator);
+Vue.use(Router)
+Vue.use(SuiVue)
+Vue.use(SimpleVueValidator)
 
 
 export default new Router({
@@ -31,6 +29,13 @@ export default new Router({
         import(/* webpackChunkName: "about" */ './views/About/About.vue'),
     },
     {
+      path: '/account',
+      name: 'account',
+      component: () =>
+        import(/* webpackChunkName: "account" */ './views/Account/Account.vue'),
+      beforeEnter: (_to, _from, next) => Accsess.hasPremissions(next),
+    },
+    {
       path: '/login',
       name: 'login',
       component: () =>
@@ -43,11 +48,10 @@ export default new Router({
         import(/* webpackChunkName: "register" */ './views/Membership/Register/Register.vue'),
     },
     {
-      path: '/account',
-      name: 'account',
+      path: '/update',
+      name: 'update',
       component: () =>
-        import(/* webpackChunkName: "account" */ './views/Account/Account.vue'),
-      beforeEnter: (_to, _from, next) => Accsess.hasPremissions(next),
+        import(/* webpackChunkName "update" */ './views/Update/Update.vue'),
     },
     {
       path: '*',
@@ -56,4 +60,4 @@ export default new Router({
         import(/* webpackChunkName: "fof" */ './views/Error/PageNotFound.vue'),
     }
   ],
-});
+})

@@ -35,4 +35,4 @@ export default {
       className: 'registered outline icon',
     }
   ]
-};
+}

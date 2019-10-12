@@ -19,6 +19,6 @@ export default {
       default: '',
     },
   }
-};
+}
 </script>
 <style lang="less" src="../../assets/style/less/margin.less"></style>

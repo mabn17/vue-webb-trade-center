@@ -2,15 +2,15 @@ const ErrorHandeler = {
   generageDefault: (string) => `Warning! ${string}, login to continue`,
 
   checkLoginQuery: (query) => {
-    let message = '';
+    let message = ''
 
     if (query.err) {
-      message = ErrorHandeler.generageDefault('Token has expired');
+      message = ErrorHandeler.generageDefault('Token has expired')
     } else if (query.token) {
-      message = ErrorHandeler.generageDefault('Not autherized');
+      message = ErrorHandeler.generageDefault('Not autherized')
     }
-    return message;
+    return message
   }
 };
 
-export default ErrorHandeler;
+export default ErrorHandeler

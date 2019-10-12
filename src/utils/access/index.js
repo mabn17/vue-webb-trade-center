@@ -1,15 +1,15 @@
-import TokenService from '../../api/TokenService';
+import TokenService from '../../api/TokenService'
 
 const Accsess = {
   hasPremissions: (next) => {
-    const token = TokenService.getUserToken();
+    const token = TokenService.getUserToken()
 
     if (!token) {
-       next('/login?token=false');
+       next('/login?token=false')
     }
 
-    return next();
+    return next()
   }
 };
 
-export default Accsess;
+export default Accsess

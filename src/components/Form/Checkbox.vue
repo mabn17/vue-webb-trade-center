@@ -29,7 +29,7 @@ export default {
     msg: { type: String, default: 'Must agree to the terms' },
     styles: { type: String, default: 'message error-message', },
   },
-};
+}
 </script>
 
 <style lang="less" src="../../assets/style/less/forms.less"></style>

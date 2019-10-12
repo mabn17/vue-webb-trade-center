@@ -29,7 +29,7 @@ export default {
       default: 'message error-message',
     },
   },
-};
+}
 </script>
 
 <style lang="less" src="../../assets/style/less/forms.less"></style>

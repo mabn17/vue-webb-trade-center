@@ -1,17 +1,19 @@
-import axios from 'axios';
-import TokenService from './TokenService';
+import axios from 'axios'
+import TokenService from '@/api/TokenService'
 
 export const handleError = e => {
-  if (e.response) return e.response.data.errors.detail;
+  if (e.response) {
+    return e.response.data.errors.detail
+  }
 
-  return 'Could not reach the server';
+  return 'Could not reach the server'
 };
 
 
 const ApiClient = axios.create({
   baseURL: process.env.VUE_APP_BACKEND_URL,
   headers: { 'Content-Type': 'application/json; charset=utf-8' },
-});
+})
 
 ApiClient.interceptors.request.use(
   request => {
@@ -22,21 +24,22 @@ ApiClient.interceptors.request.use(
 
     return request;
   },
+
   error => Promise.reject(error),
-);
+)
 
 /**
  * Bad solution, do not judge :)
  * Don't want to change the api response for the React version.
 */
 ApiClient.interceptors.response.use(undefined, error => {
-  const err = handleError(error);
-  const jwtErrors = ['signature', 'jwt', 'token'];
+  const err = handleError(error)
+  const jwtErrors = ['signature', 'jwt', 'token']
 
   for (let i = 0; i < jwtErrors.length; i++) {
     if (err.includes(jwtErrors[i])) {
-      TokenService.removeUserToken();
-      return window.location.assign('/login?err=invalid_token');
+      TokenService.removeUserToken()
+      return window.location.assign('/login?err=invalid_token')
     }
   }
 
@@ -46,4 +49,4 @@ ApiClient.interceptors.response.use(undefined, error => {
   };
 });
 
-export default ApiClient;
+export default ApiClient

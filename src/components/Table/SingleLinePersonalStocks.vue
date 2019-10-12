@@ -37,34 +37,21 @@ export default {
   props: {
     stocks: Array,
     col: String,
+    callback: Function,
 
     className: {
       type: String,
       default: '',
     },
-    columns: {
-      type: Array,
-      default: () => [
-        'Bought', 'Stock Name',
-        'Buy-in Price', 'Current Price',
-        'Quantity',
-      ],
-    },
-    callback: {
-      type: Function,
-      default: () => null,
-    },
   },
-
-  data() { return {}; },
 }
 </script>
 <style>
-  .lower-i {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    position: relative !important;
-    top: -1px !important;
-    background: #00b5ad;
-  }
+.lower-i {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  position: relative !important;
+  top: -1px !important;
+  background: #00b5ad;
+}
 </style>

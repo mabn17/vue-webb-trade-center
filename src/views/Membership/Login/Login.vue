@@ -21,33 +21,14 @@
 </template>
 
 <script>
-import DefaultForm from '@/views/Membership/Forms.js';
-import { LoginState } from '@/views/Membership/states.js';
-import ErrorHandeler from '@/utils/errors';
+import DefaultLogin from '@/views/Membership/Login/Login';
 
 export default {
   name: 'login',
-  extends: DefaultForm,
-
-  data() { return LoginState; },
-
-  validators: {
-    email: function() { return this.Validation().email(this.VueValidator(), this.email) },
-    password: function() { return this.Validation().password(this.VueValidator(), this.password) },
-  },
-
-  methods: {
-    submit() {
-      this.$validate().then(valid => {
-        if (valid) {
-          this.login({ email: this.email, password: this.password });
-        }
-      });
-    },
-  },
+  extends: DefaultLogin,
 
   mounted() {
-    this.errorMessage = ErrorHandeler.checkLoginQuery(this.$route.query);
+    this.errorMessage = this.ErrorService().checkLoginQuery(this.$route.query);
   },
 }
 </script>

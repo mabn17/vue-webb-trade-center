@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import DefaultBalance from './AddBalance.js';
+import DefaultBalance from './AddBalance'
 
 export default {
   name: 'BalanceModal',
@@ -35,39 +35,15 @@ export default {
     show: Boolean,
   },
 
-  data() {
-    return {
-      balance: 0,
-    }
-  },
-
-  validators: {
-    balance: function() {
-      return this.Validation().balance(this.VueValidator(), this.balance);
-    },
-  },
-
   methods: {
-    close() { this.callback(); },
-
-    addPersonalAssets() {
-      const that = this;
-      this.Api().post('/user/update/assets', {newAmount: this.balance})
-      .then(res => {
-        if (res.error) {
-          return;
-        }
-
-        that.update(true);
-      });
-    },
+    close() { this.callback() },
 
     submit() {
       this.$validate().then(valid => {
         if (valid) {
-          this.addPersonalAssets();
+          this.addPersonalAssets()
         }
-      });
+      })
     },
   },
 }
