@@ -34,4 +34,4 @@ npm run lint
 ```
 
 ###### Thanks
-This website was made with vue-chartjs, semantic ui vue and bootstrap grid.
+This website was made with vue-chartjs, semantic ui vue and bootstrap grid. 
