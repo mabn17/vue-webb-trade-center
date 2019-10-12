@@ -48,6 +48,13 @@ export default new Router({
         import(/* webpackChunkName: "register" */ './views/Membership/Register/Register.vue'),
     },
     {
+      path: '/shop',
+      name: 'shop',
+      component: () =>
+        import(/* webpackChunkName: "shop" */ './views/Shop/Shop.vue'),
+      beforeEnter: (_to, _from, next) => Accsess.hasPremissions(next),
+    },
+    {
       path: '/update',
       name: 'update',
       component: () =>

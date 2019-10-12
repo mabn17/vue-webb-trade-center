@@ -19,7 +19,7 @@ export default {
     },
     {
       value: 'Shop',
-      url: '/stocks',
+      url: '/shop',
       className: 'shopping cart icon',
     },
   ],
