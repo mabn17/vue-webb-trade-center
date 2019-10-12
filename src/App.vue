@@ -2,9 +2,11 @@
   <div id="app">
     <Navbar />
     <div class="main">
-    <router-view>
-      <sui-container text />
-    </router-view>
+      <b-container fluid>
+        <router-view>
+          <sui-container text />
+        </router-view>
+      </b-container>
     </div>
     <Footer />
   </div>

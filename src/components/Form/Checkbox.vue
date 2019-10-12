@@ -32,4 +32,4 @@ export default {
 }
 </script>
 
-<style lang="less" src="../../assets/style/less/forms.less"></style>
+<style lang="less" src="@/assets/style/less/forms.less"></style>

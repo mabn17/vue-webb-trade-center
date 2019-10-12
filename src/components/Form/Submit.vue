@@ -22,7 +22,7 @@ export default {
     },
     classNames: {
       type: String,
-      default: 'fluid'
+      default: 'fluid second'
     }
   },
 };
