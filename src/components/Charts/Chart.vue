@@ -1,9 +1,11 @@
 <template>
-  <div class="small">
-    <line-chart v-if="stock.length"
-      :width="600" :height="200"
-      :responsive="false" v-bind:chart-data="datacollection">
-    </line-chart>
+  <div class="scroll-container small">
+    <div class="scroll-box">
+      <line-chart v-if="stock.length"
+        :width="900" :height="300"
+        :responsive="false" v-bind:chart-data="datacollection">
+      </line-chart>
+    </div>
   </div>
 </template>
 
@@ -76,4 +78,13 @@ export default {
 
 <style>
 .small { margin: 150px auto; }
+
+.scroll-container {
+  padding: 20px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.scroll-box { display: inline-block; }
+
 </style>

@@ -27,3 +27,9 @@ export const filterByObjProp = (arr, prop='when_time') => {
 
   return placeHolder
 }
+
+export const searchForValue = (arr, str, prop='name') => {
+  return arr.filter(val =>
+    val[prop].toLowerCase().includes(str.toLowerCase())
+  )
+}

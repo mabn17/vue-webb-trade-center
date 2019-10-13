@@ -1,0 +1,21 @@
+article >>> img {
+  height: 50%;
+  width: 100%;
+}
+
+article >>> p {
+  height: 45%;
+  width: 100%;
+}
+
+article >>> .view { color: 'grey' !important; }
+article >>> .add { color: 'red' !important; }
+article { padding-bottom: 3%; }
+
+.card {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card-body { padding-bottom: 0; }

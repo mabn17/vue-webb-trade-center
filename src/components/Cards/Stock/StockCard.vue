@@ -1,12 +1,23 @@
 <template>
-  <b-card         
-    :text-variant="color"
-    :header="item.name"
-    class="text-center"
-    >
-    <p class="card-text">
+  <b-card
+    :title="item.name"
+    :img-src="`/img/stocks/${item.picture}`"
+    img-alt="item.name"
+    img-top
+    tag="article"
+    class="mb-4 h-100 d-flex align-text-bottom"
+  >
+    <b-card-text class="flex-fill">
       {{generateText()}}
-    </p>
+    </b-card-text>
+    <b-row class="">
+        <b-col cols="5" class="d-flex flex-row">
+          <span class="view">View</span>
+        </b-col>
+        <b-col cols="7" class="d-flex flex-row-reverse">
+          <span class="add">Add to cart</span>
+        </b-col>
+      </b-row>
   </b-card>
 </template>
 <script>
@@ -26,10 +37,10 @@ export default {
     generateText() {
       const str = this.item.description
 
-      return str.length > 50
-        ? `${str.substring(0, 50)} ...`
-        : str
+      return str.substring(0, 50)
     }
   }
 }
 </script>
+<!--  -->
+<style lang="css" src="@/assets/style/css/scoped/card.css" scoped></style>

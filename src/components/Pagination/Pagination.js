@@ -8,7 +8,6 @@ export default {
   data() {
     return {
       paginatedItems: items,
-      perPage: 2,
       totalRows: items.length,
       currentPage: 1,
     }

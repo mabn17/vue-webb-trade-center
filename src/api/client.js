@@ -17,12 +17,12 @@ const ApiClient = axios.create({
 
 ApiClient.interceptors.request.use(
   request => {
-    const token = TokenService.getUserToken();
+    const token = TokenService.getUserToken()
     if (token) {
-      request.headers['x-access-token'] = token;
+      request.headers['x-access-token'] = token
     }
 
-    return request;
+    return request
   },
 
   error => Promise.reject(error),

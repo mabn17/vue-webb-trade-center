@@ -34,14 +34,5 @@ export default {
         ? this.show_menu()
         : this.hide_menu()
     },
-
-    loaded() {
-      this.body.style.overflowY = "hidden"
-      this.load = true
-    },
-
-    handleResize() { this.hide_menu() },
-    ready() { window.addEventListener('resize', this.handleResize) },
-    beforeDestroy() { window.removeEventListener('resize', this.handleResize) },
   }
 }
