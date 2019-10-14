@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="w-100 mb-4">
+    <Cart />
+    <div class="w-100 my-3">
       <label for="search">Search</label><br>
       <input name="search" class="underline-input w-75" type="text" v-model="searchString" />
     </div>
-    <Pagination v-bind:items="activeItems" />
+    <Pagination v-bind:items="activeItems" v-bind:updated="updated" />
   </div>
 </template>
 
@@ -18,7 +19,7 @@ export default {
   data() {
     return {
       items: [], activeItems: [],
-      searchString: '',
+      searchString: '', updated: false
     }
   },
 
@@ -28,7 +29,17 @@ export default {
     }
   },
 
-  mounted() { this.getAllItems() },
+  mounted() {
+    const that = this
+    this.getAllItems()
+    this.Socket().onStockChange(function() {
+      that.getAllItems(true, function() {
+        that.activeItems = that.Filter(that.items, that.searchString)
+        that.updated = !that.updated
+        // this.searchString = this.searchString
+      })
+    });
+  },
 }
 </script>
 <style>

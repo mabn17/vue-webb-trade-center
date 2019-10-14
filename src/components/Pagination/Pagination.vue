@@ -32,6 +32,11 @@ export default {
   extends: DefaultPagination,
 
   props: {
+    updated: {
+      type: Boolean,
+      default: false,
+    },
+
     perPage: {
       type: Number,
       default: 3,
@@ -40,13 +45,17 @@ export default {
     items: {
       type: Array,
       default: () => [],
-    }
+    },
   },
 
   watch: {
     items: function() {
       this.update()
-    }
+    },
+
+    updated: function() {
+      this.currentPage = 1
+    },
   },
 }
 </script>

@@ -24,6 +24,12 @@ html { background: linear-gradient(158deg, rgba(84, 84, 84, 0.03) 0%, rgba(84, 8
 .signer:hover { color: #41b883; }
 .page-link { color: rgba(0, 0, 0, 0.87) !important; }
 
+.color-second {
+  color: #41b883;
+  font-weight: 800;
+}
+
+
 .signer {
   color: #435466;
   font-weight: 400;

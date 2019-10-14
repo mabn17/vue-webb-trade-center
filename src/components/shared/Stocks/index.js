@@ -17,7 +17,7 @@ export default {
      *
      * @param {String|Boolean} name To set an active item
      */
-    getStockHistory(name=null) {
+    getStockHistory(name=null, callback=null) {
       const that = this;
       this.Api().get('/history/stocks').then(res => {
         if (res.error) {
@@ -26,7 +26,15 @@ export default {
         }
 
         that.history = that.NestByName(res.data.data)
-        if (name) this.setToActive(name)
+
+        if (name) {
+          if (!callback) {
+            this.activeItem = this.history[name]
+            return
+          }
+
+          callback()
+        }
       });
     },
 
@@ -72,7 +80,7 @@ export default {
      * {Array?} activeItems |          v
      * @param {Boolean} isPaginate creates a dupplicate for pagination checks
      */
-    getAllItems(isPaginate=true) {
+    getAllItems(isPaginate=true, callback=null) {
       const that = this
       this.Api().get('/stocks').then(res => {
         if (res.error) {
@@ -81,7 +89,13 @@ export default {
         }
 
         that.items = res.data.items
-        if (isPaginate) that.activeItems = res.data.items
+        if (isPaginate) {
+          if (!callback) {
+            that.activeItems = res.data.items
+            return
+          }
+          callback()
+        }
       })
     },
   }

@@ -2,13 +2,19 @@ import history from '@/components/shared/Stocks'
 import ErrorHandeler from '@/utils/errors'
 import { searchForValue } from '@/utils/filter/index'
 import Chart from '@/components/Charts/Chart.vue'
+import { SocketService } from '@/utils/sockets'
+
 import HorizontalCard from '@/components/Cards/Horizontal/HorizontalCard.vue'
 import SidePanel from '@/components/Side/SidePanel.vue'
+import Link from '@/components/Link/Link.vue'
 
 export default {
   name: 'DefaultStock',
   extends: history,
-  components: { Chart, HorizontalCard, SidePanel },
+  components: {
+    Chart, HorizontalCard,
+    SidePanel, Link
+  },
 
   data() {
     return {
@@ -18,6 +24,7 @@ export default {
   },
 
   methods: {
+    Socket: () => SocketService,
     ErrorService: () => ErrorHandeler,
     Search: (items, str) => searchForValue(items, str),
 
