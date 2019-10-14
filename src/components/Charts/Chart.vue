@@ -77,7 +77,9 @@ export default {
 </script>
 
 <style>
-.small { margin: 150px auto; }
+canvas {
+  width: 100%;
+}
 
 .scroll-container {
   padding: 20px;
@@ -86,5 +88,4 @@ export default {
 }
 
 .scroll-box { display: inline-block; }
-
 </style>

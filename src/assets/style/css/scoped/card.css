@@ -1,15 +1,23 @@
 article >>> img {
-  height: 50%;
+  height: 43%;
   width: 100%;
 }
 
 article >>> p {
-  height: 45%;
+  height: 43%;
   width: 100%;
 }
 
-article >>> .view { color: 'grey' !important; }
-article >>> .add { color: 'red' !important; }
+article >>> .view {
+  /* color: 'grey' !important; */
+  cursor: pointer;
+}
+
+article >>> .add {
+  /* color: 'red' !important; */
+  cursor: pointer;
+}
+
 article { padding-bottom: 3%; }
 
 .card {
@@ -19,3 +27,10 @@ article { padding-bottom: 3%; }
 }
 
 .card-body { padding-bottom: 0; }
+
+div { transition: background-color 1s; }
+
+.flashing {
+  background-color: #41b883;
+  transition: no;
+}

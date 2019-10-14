@@ -2,8 +2,8 @@
   <div class="pagination-div" v-if="items.length > 0">
     <b-container>
       <b-row>
-        <b-col md="6" class="my-1">
-          <b-pagination class="flex-wrap"
+        <b-col md="12" class="my-1">
+          <b-pagination class="flex-wrap float-right"
             v-model="currentPage" :total-rows="totalRows"
             :per-page="perPage" @change="onPageChanged"
             prev-text="Prev" next-text="Next"

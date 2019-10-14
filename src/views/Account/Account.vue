@@ -21,7 +21,7 @@
           v-bind:stocks="stocks" :callback="showAddBalance"
         />
       </div>
-      <div class="m-n-5" v-for="(stock, index) in stocks" :key="index">
+      <div class="chartz m-n-5" v-for="(stock, index) in stocks" :key="index">
         <Chart :stock="history[stock['item_name']]" />
       </div>
     </div>
@@ -60,3 +60,6 @@ export default {
 </script>
 <style lang="less" src="@/assets/style/less/typography.less"></style>
 <style lang="less" src="@/assets/style/less/margin.less"></style>
+<style lang="css" scoped>
+.chartz >>> .small { margin: 150px auto; }
+</style>

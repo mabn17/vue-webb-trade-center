@@ -1,6 +1,7 @@
 <template>
   <b-card
     :title="item.name"
+    :sub-title="`${item.price} kr/st.`"
     :img-src="`/img/stocks/${item.picture}`"
     img-alt="item.name"
     img-top
@@ -12,17 +13,21 @@
     </b-card-text>
     <b-row class="">
         <b-col cols="5" class="d-flex flex-row">
-          <span class="view">View</span>
+          <span class="view" @click="goToStockURL">View</span>
         </b-col>
         <b-col cols="7" class="d-flex flex-row-reverse">
-          <span class="add">Add to cart</span>
+          <div :class="{'flashing':flashing}" v-on:click="flash">
+            <span class="add">Add to cart</span>
+          </div>
         </b-col>
       </b-row>
   </b-card>
 </template>
 <script>
+import DefaultStockCard from './StockCard'
 export default {
   name: 'StockCard',
+  extends: DefaultStockCard,
 
   props: {
     item: Object,
@@ -34,10 +39,8 @@ export default {
   },
 
   methods: {
-    generateText() {
-      const str = this.item.description
-
-      return str.substring(0, 50)
+    goToStockURL() {
+      this.$router.push(`/stocks/${this.item.name}`)
     }
   }
 }

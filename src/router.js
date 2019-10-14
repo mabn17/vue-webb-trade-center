@@ -55,6 +55,12 @@ export default new Router({
       beforeEnter: (_to, _from, next) => Accsess.hasPremissions(next),
     },
     {
+      path: '/stocks/:id',
+      name: 'stock',
+      component: () =>
+        import(/* webpackChunkName: "stock" */ './views/Stock/Stock.vue'),
+    },
+    {
       path: '/update',
       name: 'update',
       component: () =>
