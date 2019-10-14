@@ -10,10 +10,6 @@ export default {
     Api: () => ApiClient,
     NestByName: arr => nestObjectArrayByKey(arr),
 
-    setToActive(name) {
-      this.activeItem = this.history[name]
-    },
-
     /**
      * Requires props:
      * {Object} history | Gets all history in one obj { Gold: [..], ..})

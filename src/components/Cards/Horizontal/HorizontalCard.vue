@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-if="current.name">
+      <slot></slot>
       <b-card no-body class="overflow-hidden" style="max-width: 540px;" id="card-about">
         <b-row no-gutters>
           <b-col md="9">

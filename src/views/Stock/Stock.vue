@@ -1,23 +1,18 @@
 <template>
 <div>
-  <div v-if="activeItem">
+  <div v-if="history[activeId]">
+    <h1>{{ activeId }} - Overview</h1>
+    <sui-divider section />
     <b-row>
-      <b-col md="8"><Chart v-bind:stock="activeItem" /></b-col>
-      <b-col md="4" class="mt-4">
+      <b-col md="8"><Chart v-bind:stock="history[activeId]" /></b-col>
+      <b-col md="4" >
         <b-row>
-          <a>Hej</a>
-          <HorizontalCard :current="itemObj" />
+          <HorizontalCard :current="activeItem">
+            <!-- <h2>hej</h2> -->
+          </HorizontalCard>
         </b-row>
          <b-row>
-           <div class="mt-2">
-            <h3>Other Stocks</h3>
-            <p class="block-links">
-              <a>hs</a>
-              <a>hs</a>
-              <a>hs</a>
-              <a>hs</a>
-            </p>
-          </div>
+           <SidePanel v-bind:name="activeId" v-bind:items="items" />
         </b-row>
       </b-col>
     </b-row>
@@ -35,6 +30,9 @@ export default {
   methods: {},
 
   watch: {
+    $route: function() {
+      this.activeId = this.$route.params.id
+    },
     items: function() {
       this.handleParam()
     }
@@ -46,8 +44,6 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style>
 .small { padding: 0; }
-
-.block-links >>> a { display: block; }
 </style>

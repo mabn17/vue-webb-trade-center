@@ -3,17 +3,17 @@ import ErrorHandeler from '@/utils/errors'
 import { searchForValue } from '@/utils/filter/index'
 import Chart from '@/components/Charts/Chart.vue'
 import HorizontalCard from '@/components/Cards/Horizontal/HorizontalCard.vue'
+import SidePanel from '@/components/Side/SidePanel.vue'
 
 export default {
   name: 'DefaultStock',
   extends: history,
-  components: { Chart, HorizontalCard },
+  components: { Chart, HorizontalCard, SidePanel },
 
   data() {
     return {
       history: {}, errors: '', errorMessage: '',
-      activeId: '', activeItem: [], items: [],
-      itemObj: {},
+      activeId: '', items: [], activeItem: {},
     }
   },
 
@@ -25,7 +25,7 @@ export default {
       const id = this.$route.params.id
       const newItem = this.Search(this.items, id);
 
-      this.itemObj = newItem.length ? newItem[0] : {}
+      this.activeItem = newItem.length ? newItem[0] : {}
       this.activeId = id
     },
   },
