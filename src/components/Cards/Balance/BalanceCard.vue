@@ -12,7 +12,7 @@
           <div class="event">
             <div class="content">
               <div class="summary">
-                {{ information.assets
+                {{ information.assets || information.assets === 0
                   ? `${twoDecimals(information.assets)} kr.`
                   : 'Loading ...'
                 }}
