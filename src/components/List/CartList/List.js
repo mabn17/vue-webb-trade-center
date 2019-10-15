@@ -53,6 +53,7 @@ export default {
 
     clearItems() {
       this.Shop().removeAllShopItems()
+      this.$emit('cartChange', 0, 0, {})
       this.update()
     },
   },

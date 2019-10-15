@@ -27,7 +27,7 @@ export default {
 
   props: {
     current: {
-      type: Object,
+      type: [Object, Array],
       default: () => {},
     }
   },

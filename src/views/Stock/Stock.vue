@@ -6,7 +6,7 @@
     <b-row>
       <b-col md="8"><Chart v-bind:stock="history[activeId]" /></b-col>
       <b-col md="4" >
-        <HorizontalCard v-bind:current="activeItem">
+        <HorizontalCard v-bind:current="newActiveItem">
           <i class="sign-out icon" id="rotate-me"></i><Link value="Back to Shop" url="/shop" />
         </HorizontalCard>
          <b-row>

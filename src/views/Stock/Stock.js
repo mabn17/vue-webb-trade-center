@@ -20,6 +20,7 @@ export default {
     return {
       history: {}, errors: '', errorMessage: '',
       activeId: '', items: [], activeItem: {},
+      newActiveItem: {},
     }
   },
 
@@ -31,8 +32,8 @@ export default {
     handleParam() {
       const id = this.$route.params.id
       const newItem = this.Search(this.items, id);
-
-      this.activeItem = newItem.length ? newItem[0] : {}
+      // console.log(newItem[0]);
+      this.newActiveItem = newItem[0] || {}
       this.activeId = id
     },
   },
