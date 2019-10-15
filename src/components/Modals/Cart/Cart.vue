@@ -64,7 +64,7 @@ export default {
 
     setMessage: {
       type: Function,
-      default: (msg) => null
+      default: (msg) => msg
     },
 
     items: {
@@ -94,7 +94,7 @@ export default {
       if (!this.isRequesting) {
         this.isRequesting = true
         const { total, left, formatedCart } = this.listValues
-        console.log(formatedCart)
+
         if (
           Object.entries(formatedCart).length === 0 &&
           formatedCart.constructor === Object
