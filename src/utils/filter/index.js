@@ -12,7 +12,7 @@ export const nestObjectArrayByKey = (arr, prop='item_name') => {
     placeHolder[item[prop]] = []
     placeHolder[item[prop]].push(item)
   }
-  
+
   return placeHolder
 }
 

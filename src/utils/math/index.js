@@ -24,3 +24,12 @@ export const calcDiff = (first, second) => {
 
   return (telj/namn) * times
 }
+
+export const updatedSumArr = (arr, callback) => {
+  let total = 0;
+  arr.forEach(element => {
+    total += callback(element.id);
+  });
+
+  return total;
+}

@@ -18,7 +18,7 @@ i {
   background-repeat: no-repeat;
 }
 
-header {
+#header {
   display: flex;
   z-index: 999;
   padding: 10px 0;
@@ -31,7 +31,7 @@ header {
   transition: 0.33s;
 }
 
-header .wrap {
+#header .wrap {
   padding: 0 2%;
   width: 100%;
   display: flex;
@@ -39,16 +39,16 @@ header .wrap {
   justify-content: space-between;
 }
 
-header img {
+#header img {
   width: 100px;
 }
 
-header #menu {
+#header #menu {
   display: flex;
   flex-direction: row;
 }
 
-header #menu li {
+#header #menu li {
   list-style-type: none;
   position: relative;
   user-select: none;
@@ -84,7 +84,7 @@ header #menu li {
   }
 }
 
-header .drop_menu {
+#header .drop_menu {
   position: absolute;
   display: block;
   top: 149%;
@@ -106,13 +106,13 @@ header .drop_menu {
   }
 }
 
-header .drop_menu.display {
+#header .drop_menu.display {
   transform: scaleY(1);
 
   a { opacity: 1; }
 }
 
-header #hamburger {
+#header #hamburger {
   cursor: pointer;
   border-radius: 50%;
   position: absolute;
@@ -122,7 +122,7 @@ header #hamburger {
   transform: translateY(-50%);
 }
 
-header #hamburger span {
+#header #hamburger span {
   height: 2px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -134,7 +134,7 @@ header #hamburger span {
   &:nth-child(3) { width: 12px; }
 }
 
-.display_menu header #hamburger {
+.display_menu #header #hamburger {
   span:nth-child(1) { transform: rotate(45deg) translate(2px, 1px); }
   span:nth-child(2) { transform: rotate(-45deg); }
   span:nth-child(3) { transform: rotate(45deg) translate(6px, -9px); }
@@ -160,17 +160,17 @@ header #hamburger span {
 @media screen and (max-width: 660px) {
   body { padding-top: 70px; }
 
-  header .wrap {
+  #header .wrap {
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 0;
   }
 
-  header img { width: 50px; }
-  header #hamburger { display: block; }
+  #header img { width: 50px; }
+  #header #hamburger { display: block; }
 
-  header #menu {
+  #header #menu {
     width: 100%;
     display: block;
       height: 0;
@@ -179,7 +179,7 @@ header #hamburger span {
     flex-direction: column;
   }
 
-  .display_menu header #menu {
+  .display_menu #header #menu {
       height: calc(100vh - 64px);
 
     li {
@@ -191,7 +191,7 @@ header #hamburger span {
     }
   }
 
-  header #menu li {
+  #header #menu li {
     height: 0;
     opacity: 0;
     margin-left: 0;
@@ -225,7 +225,7 @@ header #hamburger span {
     }
   }
 
-  header .drop_menu {
+  #header .drop_menu {
     top: @body_height_8;
     box-shadow: none;
     left: 0;
@@ -245,18 +245,18 @@ header #hamburger span {
 @media screen
 and(max-width: 660px)
 and(max-height: 500px) {
-  .display_menu header {
+  .display_menu #header {
     max-height: 100vh;
     overflow-y: scroll;
   }
 
-  .display_menu header #menu {
+  .display_menu #header #menu {
     li {
         height: @body_height_4;
       }
   }
 
-  header #menu li {
+  #header #menu li {
     a {
         line-height: @body_height_4;
       }
@@ -264,7 +264,7 @@ and(max-height: 500px) {
 
     .icon { display: block; }
 
-    header .drop_menu {
+    #header .drop_menu {
       top: @body_height_4;
     }
 }

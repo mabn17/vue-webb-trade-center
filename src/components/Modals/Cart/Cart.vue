@@ -1,40 +1,127 @@
 <template>
-  <span>
-    <i class="cart icon mb-2"><span class="color-second">0</span></i>
-  </span>
+<div>
+  <b-button v-b-modal.modal-scrollable class="no-content-around" id="btn">
+    <span>
+      <i id="cart" class="cart icon mb-2">
+        <span class="color-second">{{ cartItems.length }}</span>
+      </i>
+    </span>
+  </b-button>
+  <div>
+  <b-modal
+    no-close-on-backdrop
+    scrollable
+    id="modal-scrollable"
+    title="Shopping Cart"
+    okTitle="Checkout"
+    @ok="handleOk"
+  >
+    <List
+      v-bind:cartItems="cartItems"
+      :update="update"
+      v-bind:items="items"
+      :personal="personal"
+      :message="message"
+      @cartChange="newTotal"
+    />
+  </b-modal>
+</div>
+</div>
 </template>
 <script>
+import ShopService from '@/utils/shop'
 import DefaultCart from './Cart'
 export default {
   name: 'cart',
-  extends: DefaultCart
+  extends: DefaultCart,
+
+  data() {
+    return {
+      isRequesting: false,
+      listValues: {
+        totalCost: 0,
+        assetsLeft: 0,
+        formatedCart: {},
+      },
+    }
+  },
+
+  props: {
+    update: {
+      type: Function,
+      default: () => null,
+    },
+
+    personal: {
+      type: Object,
+      default: () => {}
+    },
+
+    message: {
+      type: String,
+      default: '',
+    },
+
+    setMessage: {
+      type: Function,
+      default: (msg) => null
+    },
+
+    items: {
+      type: Array,
+      default: () => [],
+    },
+
+    cartItems: {
+      type: Array,
+      defatul: () => [],
+    }
+  },
+
+  methods: {
+    handleMessage(str, yes=false) {
+      this.isRequesting = false
+      this.setMessage(str)
+
+      if (yes) {
+        this.listValues = { totalCost: 0, assetsLeft: 0, formatedCart: {} }
+      }
+    },
+
+    handleOk(e) {
+      e.preventDefault()
+
+      if (!this.isRequesting) {
+        this.isRequesting = true
+        const { total, left, formatedCart } = this.listValues
+        console.log(formatedCart)
+        if (
+          Object.entries(formatedCart).length === 0 &&
+          formatedCart.constructor === Object
+        ) return this.handleMessage('Cart seems to be empty, try picking up some of our stocks!')
+        if (left < 0) return this.handleMessage('Cart is to heavy, you need to drop some items..')
+        if (total <= 0) return this.handleMessage('Something went wrong, try reseting the cart.')
+
+        for (const stock in formatedCart) {
+          this.buyUserStocks({stockToBuy: stock, amountToBuy: formatedCart[stock].length })
+        }
+
+        ShopService.removeAllShopItems()
+
+        this.handleMessage('Stocks sucsessfully added to your account', true)
+        this.update()
+      }
+    },
+
+    newTotal(total, left, formatedCart) {
+      this.listValues = {
+        total, left, formatedCart
+      }
+
+      this.setMessage('')
+    }
+  }
 }
 </script>
-<style>
-.cart::before {
-  font-size: 22px;
-  padding: 12px;
-}
 
-.cart {
-  flex: 0 0 auto;
-  color: rgba(0, 0, 0, 0.54);
-  padding: 12px;
-  overflow: visible;
-  font-size: 1.5rem;
-  text-align: center;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  border-radius: 50%;
-}
-
-.cart:hover {
-  cursor: pointer;
-}
-
-.cart:hover::before,
-.cart:hover::after {
-  border-radius: 50%;
-  background-color: rgba(33%, 33%, 33%, 0.2) !important;
-}
-
-</style>
+<style lang="css" src="@/assets/style/css/cart.css"></style>

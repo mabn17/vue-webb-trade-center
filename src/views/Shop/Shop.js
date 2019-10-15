@@ -1,6 +1,7 @@
 import DefaultStock from '@/components/shared/Stocks'
 import { searchForValue } from '@/utils/filter'
 import { SocketService } from '@/utils/sockets'
+import ShopService from '@/utils/shop'
 
 import Pagination from '@/components/Pagination/Pagination.vue'
 import Cart from '@/components/Modals/Cart/Cart.vue'
@@ -16,5 +17,6 @@ export default {
   methods: {
     Filter: (items, value) => searchForValue(items, value),
     Socket: () => SocketService,
+    Shop: () => ShopService,
   },
 }

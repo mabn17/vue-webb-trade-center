@@ -4,7 +4,7 @@
     Hello there, {{ decoded ? decoded.first_name : '' }}
   </h1>
   <sui-divider section />
-  <div class="w-100 my-0 mx-auto">
+  <div class="w-100 my-0 mx-auto modal-center-wrapper">
     <BalanceModal :update="getPersonalInformation"
       v-bind:show="showBalanceModal"  v-bind:callback="showAddBalance" />
     <SellModal v-bind:activeItem="activeItem" :update="handleSold"

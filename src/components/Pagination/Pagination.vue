@@ -14,7 +14,7 @@
         <b-col cols="12" sm="6" md="4" class="my-2"
           :key="index"
           v-for="(item, index) in paginatedItems">
-          <StockCard :item="item" />
+          <StockCard :item="item" :refreshCart="sendToCard" />
         </b-col>
       </b-row>
     </b-container>
@@ -46,6 +46,11 @@ export default {
       type: Array,
       default: () => [],
     },
+
+    sendToCard: {
+      type: Function,
+      default: () => null,
+    }
   },
 
   watch: {

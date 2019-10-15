@@ -1,0 +1,35 @@
+#cart {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 50%;
+}
+
+#cart::before {
+  font-size: 22px;
+  padding: 12px;
+}
+#cart:hover { cursor: pointer; }
+
+.sub-action:hover,
+#cart:hover::before,
+#cart:hover::after {
+  border-radius: 50%;
+  background-color: rgba(33%, 33%, 33%, 0.2) !important;
+}
+
+.sub-action,
+#btn {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.sub-action:focus,
+#btn:focus {
+  box-shadow: none;
+  outline: none;
+}

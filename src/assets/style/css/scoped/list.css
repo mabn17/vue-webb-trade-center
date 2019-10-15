@@ -1,0 +1,70 @@
+.cart-list {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 40px;
+}
+
+.card-list >>> .main-content {
+  justify-content: flex-start;
+}
+
+.card-list >>> .cart-actions {
+  justify-content: flex-start;
+}
+
+.cart-list >>> * {
+  user-select: none;
+  cursor: pointer;
+}
+
+.cart-list >>> .item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 8px 16px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  text-align: left;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.item >>> .item-title {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+.item >>> .price {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin: 0;
+}
+
+.cart-list >>> .cart-actions {
+  justify-content: flex-end;
+}
+
+.cart-list >>> .cart-actions {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 50%;
+}

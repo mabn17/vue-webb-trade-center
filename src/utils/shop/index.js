@@ -8,6 +8,7 @@ const ShopService = {
 
     if (items) {
       return JSON.parse(items).items
+        .sort((a, b) => (a.id > b.id) ? 1 : -1)
     }
     return []
   },

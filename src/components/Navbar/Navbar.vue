@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header id="header">
       <div class="wrap">
         <div id="hamburger" v-on:click="display_menu()">
           <span></span>

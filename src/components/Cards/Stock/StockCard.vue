@@ -35,6 +35,16 @@ export default {
     color: {
       type: String,
       default: 'black',
+    },
+
+    update: {
+      type: Function,
+      default: () => null,
+    },
+
+    refreshCart: {
+      type: Function,
+      default: () => null,
     }
   },
 
