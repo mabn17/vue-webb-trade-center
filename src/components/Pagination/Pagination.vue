@@ -59,7 +59,8 @@ export default {
     },
 
     updated: function() {
-      this.currentPage = 1
+      // this.currentPage = 1
+      this.paginate(this.perPage, this.currentPage - 1);
     },
   },
 }

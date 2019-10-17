@@ -29,10 +29,15 @@ export default {
 
     display_menu() {
       const body = this.body
+      const width = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
 
-      !body.classList.contains("display_menu")
+      if (width <= 660) {
+        !body.classList.contains("display_menu")
         ? this.show_menu()
         : this.hide_menu()
+      }
     },
   }
 }

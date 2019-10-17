@@ -22,7 +22,7 @@ export default {
   methods: {
     onPageChanged(page){ this.paginate(this.perPage, page - 1) },
 
-    paginate (page_size, page_number) {
+    paginate(page_size, page_number) {
       let itemsToParse = this.items
       this.paginatedItems = itemsToParse.slice(page_number * page_size, (page_number + 1) * page_size);
     },
